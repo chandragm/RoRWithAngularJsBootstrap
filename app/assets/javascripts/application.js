@@ -10,7 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-//= require_tree .
+
+//= require angular
+//= require angular-ui-router
+//= require angular-rails-templates
+//= require cable
+//= require_tree ./angular
+//= require_tree ./channels
