@@ -15,5 +15,12 @@
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require cable
-//= require_tree ./angular
 //= require_tree ./channels
+
+
+// ====================================
+// Main App
+// ====================================
+//= require ./angular/main/main.module
+//= require ./angular/main/config.route
+//= require_tree ./angular/main
