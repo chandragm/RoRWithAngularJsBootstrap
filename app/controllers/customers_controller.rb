@@ -28,6 +28,7 @@ class CustomersController < ApplicationController
         # format.html { redirect_to @customer, notice: "Customer was successfully created." }
         format.json { render :show, status: :created, location: @customer }
       else
+        byebug
         # format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
@@ -55,6 +56,11 @@ class CustomersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # GET /customers/search
+  def search
+    @customers = Customer.search(params[:query])
+   end
 
   private
     # Use callbacks to share common setup or constraints between actions.

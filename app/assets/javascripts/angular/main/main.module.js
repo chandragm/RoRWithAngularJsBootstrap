@@ -8,7 +8,7 @@
         .module('app', [
             'templates', 
             'ui.router',
+            'mgcrea.ngStrap',
             'app.customer'
-
         ]);
 })();

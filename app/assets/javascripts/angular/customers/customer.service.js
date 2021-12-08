@@ -15,12 +15,46 @@
       function CustomerService($http) {
   
         var service = {
-            fetchCustomers: fetchCustomers
+            fetchCustomers: fetchCustomers,
+            fetchCustomer: fetchCustomer,
+            createCustomer: createCustomer,
+            updateCustomer: updateCustomer,
+            deleteCustomer: deleteCustomer,
+            search: search
         };
         return service;
 
         function fetchCustomers() {
             return $http.get(base_url + '.json');
         }
+
+        function fetchCustomer(customerId) {
+            return $http.get(base_url + '/'+ customerId +'.json');
+        }
+
+        function createCustomer(customer) {
+            return $http.post(base_url + '.json', {
+                customer: customer
+              });
+        }
+
+        function updateCustomer(customer) {
+            return $http.put(base_url + '/' + customer.id + '.json', {
+                customer: customer
+              });
+        }
+
+        function deleteCustomer(customerId) {
+            return $http.delete(base_url + '/' + customerId + '.json')
+        }
+       
+        function search(query) {
+            return $http.get(base_url + '/search.json', {
+                params: {
+                  query: query
+                }
+            });
+        }
+         
     }
 })();

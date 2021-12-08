@@ -16,7 +16,7 @@
             .state('/customers', {
                 url: '/customers',
                 templateUrl: 'angular/customers/index.html',
-                controller: 'CustomerController',
+                controller: 'CustomersController',
                 controllerAs: 'vm'
             })
             .state('/customer', {

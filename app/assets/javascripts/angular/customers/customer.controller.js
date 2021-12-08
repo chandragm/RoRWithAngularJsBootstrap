@@ -11,18 +11,18 @@
 
 
         /* @ngInject */
-        function CustomerController(CustomerService) {
+        function CustomerController(CustomerService, $stateParams) {
 
           var vm = this;
-          vm.customers = [];
+          vm.customer = {};
 
-          function fetchCustomers() {
-            return CustomerService.fetchCustomers().then(function(response) {
-              vm.customers = response.data;
+          function fetchCustomer() {
+            return CustomerService.fetchCustomer($stateParams.customerId).then(function(response) {
+              vm.customer = response.data;
             });
-          };
+          }
 
           //////////
-          fetchCustomers();
+          fetchCustomer();
         }
 })();
