@@ -11,14 +11,16 @@
         .config(config);
 
     /* @ngInject */
-    function config($stateProvider) {
+    function config($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('/', {
                 url: '/',
                 templateUrl: 'angular/main/index.html',
                 controller: 'MainController',
                 controllerAs: 'vm'
-                })
+                });
+
+        $urlRouterProvider.otherwise('/');
     }
 
 })();

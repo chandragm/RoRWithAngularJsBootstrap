@@ -14,9 +14,9 @@
 //= require angular
 //= require angular-ui-router
 //= require angular-rails-templates
+//= require bootstrap
 //= require cable
 //= require_tree ./channels
-
 
 // ====================================
 // Main App
@@ -24,3 +24,10 @@
 //= require ./angular/main/main.module
 //= require ./angular/main/config.route
 //= require_tree ./angular/main
+
+// ====================================
+// Customers
+// ====================================
+//= require ./angular/customers/customer.module
+//= require ./angular/customers/config.route
+//= require_tree ./angular/customers
