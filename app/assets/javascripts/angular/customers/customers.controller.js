@@ -9,20 +9,15 @@
         .module('app.customer')
         .controller('CustomersController', CustomersController);
 
-
         /* @ngInject */
-        function CustomersController(CustomerService, $modal) {
+        function CustomersController(CustomerService, $uibModal) {
 
           var vm = this;
           vm.customers = [];
-          vm.newCustomer = {};
-          vm.customer = {};
           vm.customerId = null;
           vm.query = null;
 
           vm.addCustomer = addCustomer;
-          vm.createCustomer = createCustomer;
-          vm.updateCustomer = updateCustomer;
           vm.editCustomer = editCustomer;
           vm.destroyCustomer = destroyCustomer;
           vm.filterCustomers = filterCustomers;
@@ -34,35 +29,34 @@
           };
 
           function addCustomer() {
-            createModal.$promise.then(createModal.show);
-          };
-        
-          function createCustomer() {
-            CustomerService.createCustomer(vm.newCustomer).then(function(response) {
-              vm.customers.push(response.data);
-              vm.newCustomer = {};
-              createModal.hide();
-            }, function(response) {
-              alert('Something went wrong: ' + response.statusText + '. Code: ' + response.status);
+            var modalInstance = $uibModal.open({
+              animation: true,
+              size: 'lg',
+              backdrop: 'static',
+              templateUrl: 'angular/customers/add-customer-modal.html',
+              controller: 'AddCustomerController as vm',
+              show: false
+            });
+
+            modalInstance.result.then(function() {
+              fetchCustomers();
             });
           };
         
-          function editCustomer(customer, customerId) {
-            editModal.$promise.then(editModal.show);
-            vm.customer = angular.copy(customer);
-            vm.customerId = customerId;
-            console.log(vm.customer);
-          };
-        
-          function updateCustomer() {
-            CustomerService.updateCustomer(vm.customer).then(function(response) {
-              debugger
-              vm.customers[vm.customerId] = response.data;
-              vm.customer = {};
-              vm.customerId = null;
-              editModal.dismiss();
-            }, function(response) {
-              alert('Something went wrong: ' + response.statusText + '. Code: ' + response.status);
+          function editCustomer(customer) {
+            var modalInstance = $uibModal.open({
+              animation: true,
+              templateUrl: 'angular/customers/edit-customer-modal.html',
+              controller: 'EditCustomerController as vm',
+              resolve: {
+                customer: function() {
+                    return angular.copy(customer);
+                }
+              }
+            });
+
+            modalInstance.result.then(function() {
+              fetchCustomers();
             });
           };
         
@@ -83,22 +77,6 @@
               fetchCustomers();
             }
           };
-        
-          var createModal = $modal({
-            scope: this.vm,
-            templateUrl: 'angular/customers/add-customer-modal.html',
-            controller: 'CustomersController',
-            controllerAs: 'vm',
-            show: false
-          });
-        
-          var editModal = $modal({
-            scope: this.vm,
-            templateUrl: 'angular/customers/edit-customer-modal.html',
-            controller: 'CustomersController',
-            controllerAs: 'vm',
-            show: false
-          });
 
           //////////
           fetchCustomers();

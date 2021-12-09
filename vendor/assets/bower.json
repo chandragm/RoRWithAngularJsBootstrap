@@ -4,8 +4,8 @@
     "angular": "latest",
     "angular-ui-router": "latest",
     "bootstrap": "latest",
-    "angular-strap": "latest"
-  },
-  "resolutions": {
+    "angular-strap": "latest",
+    "angular-bootstrap": "latest",
+    "angular-animate": "latest"
   }
 }

@@ -1,16 +1,14 @@
-<div class="modal" tabindex="-1" role="dialog" aria-hidden="true" ng-controller="CustomersController as vm">
-    <div class="modal-dialog">
+
       <div class="modal-content">
-        {{vm.customer | json}}
         <form novalidate name="editCustomer" ng-submit="vm.updateCustomer()">
           <div class="modal-header">
-            <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" aria-label="Close" ng-click="vm.cancel()"><span aria-hidden="true">&times;</span></button>
             <h2 class="modal-title">Edit a customer</h2>
           </div>
           <div class="modal-body">
             <div class="form-group">
               <label>Name:</label>
-              <input class="form-control" name="name" type="text" ng-model="vm.customer.name" required/>
+              <input class="form-control" name="name" type="text" ng-model="vm.customer.name"  required/>
               <span class="text-danger" ng-show="editCustomer.name.$touched && editCustomer.name.$invalid">The name is required.</span>
             </div>
   
@@ -39,10 +37,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+            <button type="button" class="btn btn-default" ng-click="vm.cancel()">Close</button>
             <input ng-disabled="editCustomer.$invalid" class="btn btn-success" type="submit" value="Save"/>
           </div>
         </form>
       </div>
-    </div>
-  </div>

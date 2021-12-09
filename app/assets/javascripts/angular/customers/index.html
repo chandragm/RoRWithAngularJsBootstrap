@@ -29,7 +29,7 @@
               <td>{{ customer.post_code }}</td>
               <td>
                 <a class="btn btn-primary btn-xs" ui-sref="/customer({ customerId: customer.id })">Show</a>
-                <a class="btn btn-warning btn-xs" ng-click="vm.editCustomer(customer, $index)">Edit</a>
+                <a class="btn btn-warning btn-xs" ng-click="vm.editCustomer(customer)">Edit</a>
                 <a class="btn btn-danger btn-xs" ng-click="vm.destroyCustomer(customer.id, $index)">Destroy</a>
               </td>
             </tr>

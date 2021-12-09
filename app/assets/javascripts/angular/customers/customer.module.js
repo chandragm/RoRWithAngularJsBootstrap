@@ -5,6 +5,5 @@
     'use strict';
 
     angular
-        .module('app.customer', [
-        ]);
+        .module('app.customer', []);
 })();
